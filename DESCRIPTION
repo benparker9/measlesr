@@ -1,0 +1,29 @@
+Package: measlesr
+Title: Summarizes and visualizes measles cases throughout the globe 
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Ben",
+           family = "Parker",
+           role = c("aut", "cre"),
+           email = "bparke07@calpoly.edu"),
+      person(given = "Carson",
+           family = "Neubert",
+           role = c("aut"),
+           email = "first.last@example.com"),
+      person(given = "Ming",
+           family = "Ho-Hoang",
+           role = c("aut"),
+           email = "first.last@example.com")
+           )
+Description: This package summarizes and visualizes measles cases throughout the globe. It automates the creation of time series plots and summarizes total measles cases per country from 2012-2025. 
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.0.0
+Imports: 
+    readr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
