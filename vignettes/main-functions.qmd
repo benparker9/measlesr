@@ -29,7 +29,11 @@ measles_summary_table(measles_data, 2022, top = TRUE)
 ```
 
 ```{r}
+#| label: hex plots
 
+#this function would be able to create a hex plot based on the given variables, and maybe a predetermined layout of title/captions
+#two parameters, var1 and var2, both need to be numerical 
+create_hex_plot(var1, var2)
 ```
 
 ```{r}
