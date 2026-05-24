@@ -37,6 +37,14 @@ create_hex_plot(var1, var2)
 ```
 
 ```{r}
-
+#| label: leaflet map
+# this function would create a leaflet map based on any selected country-level 
+# metric and any selected year. The function will color in every country on the
+# world map (using a custom gradient color scheme specified by the user) based 
+# on the selected metric.
+plot_leaflet_map(data = cases_year,
+                 year = 2023,
+                 palette = "YlOrRd",
+                 metric = cases_per_100k)
 
 ```
