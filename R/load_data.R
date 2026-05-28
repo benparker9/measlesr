@@ -5,6 +5,8 @@
 #' @return A tibble containing monthly case data.
 #' @export
 #'
+#' @importFrom readr read_csv
+#'
 #' @examples
 #' load_data()
 
