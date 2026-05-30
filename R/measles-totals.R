@@ -20,18 +20,10 @@
 #' measles_snapshot(2019, top = FALSE)
 
 measles_snapshot <- function(year, top = TRUE) {
-  if (is.null(year)) {
-    stop("Please define a year for study")
-  }
-  if (length(year) > 1) {
-    stop("Please define a single year")
-  }
-  if (year < 2012 | year > 2025) {
-    stop("Please define a year from 2012 - 2025")
-  }
+  validate_measles_year(year)
   
   dat <- load_data() |>
-    filter(year == year) |>
+    filter(.data$year == .env$year) |>
     group_by(country) |>
     summarize(TotalMeaslesCases = mean(measles_total, na.rm = TRUE))
   
@@ -44,7 +36,7 @@ measles_snapshot <- function(year, top = TRUE) {
     dat_sum <- dat |>
       filter(TotalMeaslesCases > 0) |>
       slice_min(TotalMeaslesCases, n = 10, with_ties = FALSE)
-    print(paste("Bottom 10 Countries with the Lowest Total Measles Cases (not including 0 case countries) for Year:", year))
-    print(dat_sum)
+    message("Bottom 10 Countries with the Lowest Total Measles Cases (not including 0 case countries) for Year:", year)
+    return(dat_sum)
   } 
 }
