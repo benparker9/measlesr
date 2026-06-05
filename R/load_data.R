@@ -5,15 +5,15 @@
 #' @return A tibble containing monthly case data.
 #' @export
 #'
-#' @importFrom readr read_csv
+#' @importFrom arrow read_parquet
 #'
 #' @examples
 #' load_data()
 
 load_data <- function() {
-  readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-24/cases_month.csv')
+  path <- system.file("data.parquet", package = "measlesr")
+  arrow::read_parquet(path)
 }
-
 
 
 

@@ -23,9 +23,9 @@ measles_snapshot <- function(year, top = TRUE) {
   validate_measles_year(year)
   
   dat <- load_data() |>
-    filter(.data$year == .env$year) |>
+    filter(year == {{year}}) |>
     group_by(country) |>
-    summarize(TotalMeaslesCases = mean(measles_total, na.rm = TRUE))
+    summarize(TotalMeaslesCases = sum(measles_total, na.rm = TRUE))
   
   if (top) {
     dat_sum <- dat |> 
