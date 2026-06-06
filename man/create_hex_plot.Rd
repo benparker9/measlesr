@@ -4,40 +4,28 @@
 \alias{create_hex_plot}
 \title{Create a hexbin plot}
 \usage{
-create_hex_plot(
-  data,
-  x,
-  y,
-  bins = 20,
-  title = NULL,
-  x_label = NULL,
-  y_label = NULL,
-  plot_theme = theme_bw()
-)
+create_hex_plot(data, x, y, bins = 20, title = NULL, plot_theme = theme_bw())
 }
 \arguments{
 \item{data}{A data frame containing at least two numeric variables.}
 
-\item{x}{The numeric variable on x-axis}
+\item{x}{The numeric variable on the x-axis.}
 
-\item{y}{The numeric variable on y-axis}
+\item{y}{The numeric variable on the y-axis.}
 
-\item{bins}{The number of hexagonal bins}
+\item{bins}{The number of hexagonal bins. The default is 20.}
 
-\item{title}{The plot title.}
+\item{title}{The plot title. The default is NULL.}
 
-\item{x_label}{The x-axis label}
-
-\item{y_label}{The y-axis label}
-
-\item{plot_theme}{The ggplot theme to use. The default is theme_bw()}
+\item{plot_theme}{The ggplot theme to use. The default is theme_bw().
+Common other include theme_classic(), theme_minimal(), and theme_void()}
 }
 \value{
 A ggplot object showing a hexbin plot.
 }
 \description{
 This function creates a hexbin plot for any two numeric variables in a data
-frame.
+frame. Axis labels are automatically created from the variable names.
 }
 \examples{
 cases <- load_data()

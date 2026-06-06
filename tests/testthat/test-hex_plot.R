@@ -15,33 +15,41 @@ test_that("returns a ggplot object", {
 test_that("uses the given title", {
   expect_equal(plot1$labels$title, "Random Title")})
 
+test_that("creates x label from variable name", {
+  expect_equal(plot1$labels$x, "X Var")})
+
+test_that("creates y label from variable name", {
+  expect_equal(plot1$labels$y, "Y Var")})
+
 test_that("x is not numeric", {
   expect_error(
     create_hex_plot(
       data = example_data,
       x = group,
-      y = y_var))})
+      y = y_var),
+    "x must be a numeric variable")})
 
 test_that("y is not numeric", {
   expect_error(
     create_hex_plot(
       data = example_data,
       x = x_var,
-      y = group))})
+      y = group),
+    "y must be a numeric variable")})
 
 test_that("data is not a data frame", {
   expect_error(
     create_hex_plot(
       data = "LUL",
       x = x_var,
-      y = y_var))})
+      y = y_var),
+    "data must be a data frame")})
 
-
-test_that("uses the given x label", {
-  plot2 <- create_hex_plot(
-    data = example_data,
-    x = x_var,
-    y = y_var,
-    x_label = "X variable")
-  
-  expect_equal(plot2$labels$x, "X variable")})
+test_that("plot_theme must be a ggplot theme", {
+  expect_error(
+    create_hex_plot(
+      data = example_data,
+      x = x_var,
+      y = y_var,
+      plot_theme = "not a theme"),
+    "plot_theme must be a ggplot theme")})

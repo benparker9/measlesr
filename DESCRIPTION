@@ -25,7 +25,11 @@ Imports:
     readr,
     dplyr,
     ggplot2,
-    hexbin
+    hexbin,
+    arrow,
+    nlme,
+    rlang,
+    stringr
 Suggests: 
     knitr,
     rmarkdown,
