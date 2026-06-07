@@ -11,7 +11,7 @@
 #' load_data()
 
 load_data <- function() {
-  path <- system.file("data.parquet", package = "measlesr")
+  path <- system.file("measles-meta.parquet", package = "measlesr")
   arrow::read_parquet(path)
 }
 

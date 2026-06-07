@@ -32,10 +32,10 @@ plot_leaflet_map <- function(data,
                              metric = cases_per_100k) {
   metric_name <- rlang::as_name(rlang::ensym(metric))
   
-  required_cols <- c("iso3", "country", "year", "measles_total", "total_population")
+  required_cols <- c("iso3", "country", "year", "measles_total", "population")
   
   if (!all(required_cols %in% names(data))) {
-    stop("`data` must contain iso3, country, year, measles_total, and total_population.")
+    stop("`data` must contain iso3, country, year, measles_total, and population.")
   }
   
   if (length(year) != 1) {
@@ -45,7 +45,7 @@ plot_leaflet_map <- function(data,
   computed_metrics <- c("cases_per_100k", "total_cases", "total_population")
   
   if (!metric_name %in% computed_metrics && !metric_name %in% names(data)) {
-    stop("`metric` must be cases_per_100k, total_cases, total_population, or a numeric column in `data`.")
+    stop("`metric` must be cases_per_100k, total_cases, population, or a numeric column in `data`.")
   }
   
   if (metric_name %in% names(data) && !is.numeric(data[[metric_name]])) {
@@ -64,7 +64,7 @@ plot_leaflet_map <- function(data,
     dplyr::filter(.data$year == .env$year) |>
     dplyr::group_by(.data$iso3, .data$country) |>
     dplyr::summarise(total_cases = sum(.data$measles_total, na.rm = TRUE),
-                     total_population = mean_or_na(.data$total_population),
+                     total_population = mean_or_na(.data$population),
                      custom_metric = if (metric_name %in% names(data)) {
                      mean_or_na(.data[[metric_name]])
                      } else {
