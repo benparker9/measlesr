@@ -6,10 +6,10 @@
 #'
 #' @param data A data frame containing country-level measles data.
 #' @param year A single year to map.
-#' @param palette A color palette passed to [leaflet::colorNumeric()].
+#' @param palette A color palette.
 #'   This can be a palette name such as `"YlOrRd"` or a vector of colors.
 #' @param metric The metric to color the map by. Can be one of the computed
-#'   metrics: `cases_per_100k`, `total_cases`, or `total_population`.
+#'   metrics: `cases_per_100k`, `total_cases`, or `population`.
 #'   Can also be another numeric column in `data`, which will be averaged by
 #'   country for the selected year.
 #'   
@@ -42,7 +42,7 @@ plot_leaflet_map <- function(data,
     stop("`year` must be a single value.")
   }
   
-  computed_metrics <- c("cases_per_100k", "total_cases", "total_population")
+  computed_metrics <- c("cases_per_100k", "total_cases", "population")
   
   if (!metric_name %in% computed_metrics && !metric_name %in% names(data)) {
     stop("`metric` must be cases_per_100k, total_cases, population, or a numeric column in `data`.")
@@ -64,17 +64,17 @@ plot_leaflet_map <- function(data,
     dplyr::filter(.data$year == .env$year) |>
     dplyr::group_by(.data$iso3, .data$country) |>
     dplyr::summarise(total_cases = sum(.data$measles_total, na.rm = TRUE),
-                     total_population = mean_or_na(.data$population),
+                     population = mean_or_na(.data$population) * 1000,
                      custom_metric = if (metric_name %in% names(data)) {
                      mean_or_na(.data[[metric_name]])
                      } else {
                        NA_real_
                      }) |>
-    dplyr::mutate(cases_per_100k = (.data$total_cases / .data$total_population) * 100000,
+    dplyr::mutate(cases_per_100k = (.data$total_cases / .data$population) * 100000,
                   map_metric = dplyr::case_when(
                   metric_name == "cases_per_100k" ~ .data$cases_per_100k,
                   metric_name == "total_cases" ~ .data$total_cases,
-                  metric_name == "total_population" ~ .data$total_population,
+                  metric_name == "population" ~ .data$population,
                   TRUE ~ .data$custom_metric))
   
   if (nrow(measles_country) == 0) {
@@ -114,7 +114,7 @@ plot_leaflet_map <- function(data,
       popup = ~paste0(
         "<strong>", dplyr::coalesce(country, name), "</strong><br>",
         "Cases: ", total_cases, "<br>",
-        "Population: ", total_population, "<br>",
+        "Population: ", population, "<br>",
         metric_name, ": ", round(map_metric, 3)
       )
     ) |>

@@ -11,11 +11,11 @@ plot_leaflet_map(data, year, palette = "YlOrRd", metric = cases_per_100k)
 
 \item{year}{A single year to map.}
 
-\item{palette}{A color palette passed to \code{\link[leaflet:colorNumeric]{leaflet::colorNumeric()}}.
+\item{palette}{A color palette.
 This can be a palette name such as \code{"YlOrRd"} or a vector of colors.}
 
 \item{metric}{The metric to color the map by. Can be one of the computed
-metrics: \code{cases_per_100k}, \code{total_cases}, or \code{total_population}.
+metrics: \code{cases_per_100k}, \code{total_cases}, or \code{population}.
 Can also be another numeric column in \code{data}, which will be averaged by
 country for the selected year.}
 }
