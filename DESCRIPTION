@@ -29,7 +29,10 @@ Imports:
     arrow,
     nlme,
     rlang,
-    stringr
+    stringr,
+    leaflet,
+    rnaturalearth,
+    sf
 Suggests: 
     knitr,
     rmarkdown,

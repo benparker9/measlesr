@@ -98,6 +98,15 @@ Takes one parameter:
 fit_measles_gls(data)
 ```
 
+### Create leaflet map
+
+**This function creates an interactive leaflet world map for a selected country-level measles metric and year.**
+Takes four parameters:
+- data: the measles data frame used to create the map
+- year: the year to display on the map
+- palette: the color palette used for the map gradient
+- metric: the numeric metric used to color each country
+
 ```{r}
 #| label: leaflet map
 # this function would create a leaflet map based on any selected country-level 
