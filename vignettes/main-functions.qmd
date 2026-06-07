@@ -20,7 +20,7 @@ library(measlesr)
 
 ### Load measles data        
 **This function loads the measles yearly data provided by the WHO and tidytuesday.**      
-Takes 0 parameters, it can be saved as an object, however all functions within the package automatically load the data.        
+Takes 0 parameters, it can be saved as an object, however the summary functions within the package automatically load the data.        
 
 ```{r}
 #| label: load data 
