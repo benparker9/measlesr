@@ -105,7 +105,7 @@ Takes four parameters:
 - data: the measles data frame used to create the map
 - year: the year to display on the map
 - palette: the color palette used for the map gradient
-- metric: the numeric metric used to color each country
+- metric: the numeric metric used to color each country (metrics: `cases_per_100k`, `total_cases`, or `population`.)
 
 ```{r}
 #| label: leaflet map
